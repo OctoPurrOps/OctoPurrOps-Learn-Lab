@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>RETRO LEARN LAB</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/style.css"/>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="top">
+      <div>
+        <div class="title">RETRO LEARN LAB</div>
+        <div class="sub">SIM + imitation learning | RL (fish) | Multi-tab rooms</div>
+      </div>
+
+      <div class="row">
+        <a class="btn primary"
+           href="https://github.com/OctoPurrOps"
+           target="_blank"
+           rel="noopener noreferrer">GITHUB: OctoPurrOps</a>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="card crt">
+        <div class="hdr">
+          <div class="tabs">
+            <button class="tab active" data-tab="sim">SIM</button>
+            <button class="tab" data-tab="rl">RL</button>
+            <button class="tab" data-tab="multi">MULTI</button>
+          </div>
+
+          <div class="row" id="simTop">
+            <span class="chip">WORLD</span>
+            <select id="envSel">
+              <option value="car">CAR</option>
+              <option value="fish">FISH</option>
+              <option value="drone">DRONE</option>
+            </select>
+            <button class="btn warn" id="resetBtn">RESET</button>
+          </div>
+        </div>
+
+        <div class="body">
+          <div id="tab_sim">
+            <canvas id="view"></canvas>
+            <div class="sep"></div>
+            <div class="hint">
+              Controls:
+              <span class="kbd">↑</span> gas/thrust,
+              <span class="kbd">↓</span> brake/reverse,
+              <span class="kbd">←</span><span class="kbd">→</span> steer/turn/tilt.
+              Record → Train (IMI) → Auto.
+            </div>
+          </div>
+
+          <div id="tab_rl" style="display:none;">
+            <div class="row">
+              <span class="chip">RL WORLD</span>
+              <span class="chip">FISH ONLY</span>
+            </div>
+            <div class="sep"></div>
+            <div class="row">
+              <button class="btn primary" id="rlInitBtn">INIT RL POLICY</button>
+              <button class="btn primary" id="rlTrainBtn">TRAIN EPISODES</button>
+              <button class="btn primary" id="rlRunBtn">RUN (DEMO)</button>
+            </div>
+            <div style="height:10px"></div>
+            <div class="row">
+              <span class="chip">EPISODES</span>
+              <input type="number" id="rlEpisodes" value="25" min="1" max="500"/>
+              <span class="chip">STEPS</span>
+              <input type="number" id="rlSteps" value="650" min="50" max="5000"/>
+              <span class="chip">LR</span>
+              <input type="number" id="rlLR" value="0.003" min="0.0001" max="0.05" step="0.0005"/>
+            </div>
+            <div class="sep"></div>
+            <img id="rlImg" alt="RL render frame"/>
+            <div class="sep"></div>
+            <div class="hint">
+              Save/load RL policy: <span class="kbd">F6</span> save, <span class="kbd">F7</span> load.
+            </div>
+          </div>
+
+          <div id="tab_multi" style="display:none;">
+            <div class="row">
+              <span class="chip">ROOM</span>
+              <input type="text" id="roomIn" value="lobby"/>
+              <button class="btn primary" id="joinRoomBtn">JOIN</button>
+              <button class="btn" id="leaveRoomBtn">LEAVE</button>
+            </div>
+            <div style="height:10px"></div>
+            <div class="row">
+              <span class="chip">NAME</span>
+              <input type="text" id="nameIn" value="player"/>
+              <button class="btn" id="sendChatBtn">CHAT "HI"</button>
+            </div>
+            <div class="sep"></div>
+            <div class="row">
+              <button class="btn primary" id="broadcastBestBtn">BROADCAST BEST</button>
+              <button class="btn" id="shareDatasetBtn">SHARE DATASET</button>
+              <button class="btn bad" id="clearNetBtn">CLEAR NET LOG</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="hdr">
+          <div>CONTROL DECK</div>
+          <div class="row">
+            <button class="btn good" id="recBtn">START REC</button>
+            <button class="btn" id="stopBtn" disabled>STOP REC</button>
+            <button class="btn primary" id="autoBtn">AUTO: OFF</button>
+          </div>
+        </div>
+
+        <div class="body">
+          <div class="row">
+            <button class="btn primary" id="trainBtn">TRAIN (IMI)</button>
+            <button class="btn" id="saveBtn">SAVE MODEL</button>
+            <button class="btn" id="loadBtn">LOAD MODEL</button>
+            <button class="btn bad" id="clearBtn">CLEAR DATA</button>
+          </div>
+
+          <div class="sep"></div>
+
+          <div class="row">
+            <span class="chip">EPOCHS</span>
+            <input id="epochsIn" type="number" value="25" min="1" max="200"/>
+            <span class="chip">BATCH</span>
+            <input id="batchIn" type="number" value="128" min="16" max="512"/>
+          </div>
+
+          <div class="sep"></div>
+          <div class="mono" id="log"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.16.0/dist/tf.min.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>
