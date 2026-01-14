@@ -1,0 +1,148 @@
+:root{
+  --bg:#05070a; --panel:#0b1220; --edge:#1f2a44;
+  --text:#d7f7ff; --muted:#86b7c2;
+  --good:#7CFF6B; --bad:#FF4D6D; --accent:#57b8ff; --warn:#FFD166;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:"Press Start 2P", ui-monospace, monospace;
+  background: radial-gradient(1100px 700px at 20% 10%, #0a1430 0%, var(--bg) 55%) fixed;
+  color:var(--text);
+}
+.wrap{ max-width:1180px; margin:14px auto; padding:0 12px; }
+.top{
+  border:2px solid var(--edge);
+  border-radius:14px;
+  padding:12px 14px;
+  background:rgba(9,16,28,.85);
+  display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap;
+  position:relative; overflow:hidden;
+}
+.top:before{
+  content:""; position:absolute; inset:-40px -20px auto -20px; height:120px;
+  background: linear-gradient(90deg, rgba(87,184,255,.0), rgba(87,184,255,.18), rgba(87,184,255,.0));
+  transform: rotate(-6deg); pointer-events:none;
+}
+.title{ font-size:14px; }
+.sub{ font-size:10px; color:var(--muted); margin-top:6px; line-height:1.6; }
+.chip{
+  font-size:10px;
+  color:var(--muted);
+  padding:8px 10px;
+  border:2px solid rgba(31,42,68,.7);
+  border-radius:999px;
+  background:rgba(11,18,32,.65);
+  display:inline-flex; gap:8px; align-items:center;
+}
+.grid{ display:grid; grid-template-columns: 1.15fr 0.85fr; gap:12px; margin-top:12px; }
+@media (max-width: 980px){ .grid{ grid-template-columns:1fr; } }
+.card{
+  border:2px solid var(--edge);
+  border-radius:14px;
+  background:rgba(8,14,22,.78);
+  overflow:hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,.35);
+  position:relative;
+}
+.card.crt:after{
+  content:""; position:absolute; inset:0;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.02) 0px,
+    rgba(255,255,255,0.02) 1px,
+    rgba(0,0,0,0.00) 2px,
+    rgba(0,0,0,0.00) 4px
+  );
+  mix-blend-mode: overlay;
+  pointer-events:none;
+  opacity:.55;
+}
+.hdr{
+  padding:10px 12px;
+  border-bottom:2px solid rgba(31,42,68,.7);
+  background:rgba(11,18,32,.88);
+  display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap;
+}
+.body{ padding:12px; }
+.row{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+.tabs{ display:flex; gap:8px; flex-wrap:wrap; }
+.tab{
+  font-family:inherit; font-size:10px;
+  padding:10px 10px;
+  border-radius:12px;
+  border:2px solid rgba(31,42,68,.9);
+  background:rgba(20,32,58,.55);
+  cursor:pointer;
+  color:var(--text);
+}
+.tab.active{ border-color: rgba(87,184,255,.85); background:rgba(20,32,58,.8); }
+
+.btn{
+  font-family:inherit;
+  font-size:10px;
+  padding:10px 10px;
+  border-radius:12px;
+  border:2px solid rgba(31,42,68,.9);
+  background:rgba(20,32,58,.8);
+  color:var(--text);
+  cursor:pointer;
+  user-select:none;
+  text-decoration:none;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+}
+.btn.primary{ border-color: rgba(87,184,255,.8); }
+.btn.good{ border-color: rgba(124,255,107,.75); }
+.btn.bad{ border-color: rgba(255,77,109,.75); }
+.btn.warn{ border-color: rgba(255,209,102,.75); }
+.btn:disabled{ opacity:.55; cursor:not-allowed; }
+
+select, input[type="number"], input[type="text"]{
+  font-family:inherit;
+  font-size:10px;
+  background:rgba(11,18,32,.85);
+  color:var(--text);
+  border:2px solid rgba(31,42,68,.85);
+  border-radius:10px;
+  padding:10px 10px;
+  outline:none;
+}
+input[type="number"]{ width:120px; }
+
+canvas#view{
+  width:100%;
+  height:auto;
+  border-radius:12px;
+  border:2px solid rgba(31,42,68,.9);
+  background:#000;
+  image-rendering: pixelated;
+}
+img#rlImg{
+  width:100%;
+  max-width:420px;
+  border-radius:12px;
+  border:2px solid rgba(31,42,68,.9);
+  background:#000;
+  image-rendering: pixelated;
+  display:block;
+}
+.mono{
+  font-size:10px;
+  color:var(--muted);
+  border:2px solid rgba(31,42,68,.75);
+  border-radius:12px;
+  padding:10px;
+  background:rgba(11,18,32,.6);
+  min-height:190px;
+  white-space:pre-wrap;
+  overflow:auto;
+}
+.hint{ font-size:10px; color:var(--muted); line-height:1.6; }
+.kbd{
+  display:inline-block; padding:2px 6px; border-radius:8px;
+  border:2px solid rgba(31,42,68,.7); background:rgba(11,18,32,.65); color:var(--text);
+  font-size:10px;
+}
+.sep{ height:1px; background: rgba(31,42,68,.7); margin: 10px 0; }
